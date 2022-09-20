@@ -3,23 +3,23 @@ const mongoose = require("mongoose");
 const AppointmentSchema = new mongoose.Schema({
   apptType: {
     type: String,
-    //required: true,
+    required: true,
   },
   apptDate: {
     type: String,
-    //required: true,
+    required: true,
   },
   customerDescription: {
     type: String,
-    //required: true,
+    required: true,
   },
   address: {
     type: String,
-    //required: true,
+    required: true,
   },
   phoneNumber: {
     type: String,
-    //required: true,
+    required: true,
   },
   apptStatus: {
     type: String,
