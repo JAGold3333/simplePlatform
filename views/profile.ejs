@@ -9,14 +9,23 @@
             </div>
             <div class="mt-5">
               <h2>Schedule Appointment</h2>
-              <form action="/appointment/createAppointment" enctype="multipart/form-data" method="POST">
+              <form action="/appointment/createAppointment"  method="POST">
                 <div class="mb-3">
                     <label for="apptType" class="form-label">Appointment Type</label>
-                    <input type="text" class="form-control" name="apptType">
+                    <select name="apptType" id="apptType">
+                      <option value="Consultation">Consultation</option>
+                      <option value="Evaluation">Evaluation</option>
+                      <option value="Measure">Measurement</option>
+                      <option value="Casting">Casting</option>
+                      <option value="Delivery">Delivery</option>
+                      <option value="Adjustment">Adjustment</option>
+                      <option value="Follow-up">Follow-up</option>
+                    </select>
+                    
                 </div>
                 <div class="mb-3">
                   <label for="apptDate" class="form-label">Date</label>
-                  <input type="text" class="form-control" name="apptDate">
+                  <input type="datetime-local" class="form-control" name="apptDate">
                 </div>
                 <div class="mb-3">
                   <label for="customerDescription" class="form-label">Problem Description</label>
