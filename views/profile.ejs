@@ -1,0 +1,59 @@
+<%- include('partials/header') -%>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-6">
+            <div>
+                <p><strong>User Name</strong>: <%= user.userName %></p>
+                <p><strong>Email</strong>: <%= user.email %></p>
+                <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+            </div>
+            <div class="mt-5">
+              <h2>Schedule Appointment</h2>
+              <form action="/appointment/createAppointment" enctype="multipart/form-data" method="POST">
+                <div class="mb-3">
+                    <label for="apptType" class="form-label">Appointment Type</label>
+                    <input type="text" class="form-control" name="apptType">
+                </div>
+                <div class="mb-3">
+                  <label for="apptDate" class="form-label">Date</label>
+                  <input type="text" class="form-control" name="apptDate">
+                </div>
+                <div class="mb-3">
+                  <label for="customerDescription" class="form-label">Problem Description</label>
+                  <textarea class="form-control" name="customerDescription"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" name="address">
+                  </div>
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" name="phoneNumber">
+                  </div>
+                <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+              </form>
+            </div>
+        </div>
+        <div class="col-6">
+          <ul class="row list-unstyled">
+          <% for(var i=0; i<appts.length; i++) {%>
+            <li class="col-6 justify-content-between mt-5">
+              
+                <p><%= appts[i].apptType%></p>
+                <p><%= appts[i].apptDate%></p>
+                <p><%= appts[i].customerDescription%></p>
+                <p>Status: <%= appts[i].apptStatus%></p>
+                <p>Practitioner: <%= appts[i].practitionerName%></p>
+                <p>Paid: <%= appts[i].paid%></p>
+                
+              
+            </li>
+          <% } %>
+          </ul>
+          
+        </div>  
+      
+    </div>
+</div>
+
+<%- include('partials/footer') -%>
