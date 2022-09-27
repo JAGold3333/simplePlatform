@@ -39,7 +39,11 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
+      if(req.user.accountType === "user"){
       res.redirect(req.session.returnTo || "/profile");
+      }else if(req.user.accountType === "practitioner"){
+        res.redirect(req.session.returnTo || "/practitionerProfile")
+      }
     });
   })(req, res, next);
 };
@@ -88,6 +92,7 @@ exports.postSignup = (req, res, next) => {
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
+    accountType: req.body.accType,
   });
 
   User.findOne(

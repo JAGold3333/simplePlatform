@@ -1,0 +1,74 @@
+<%- include('partials/headerPract') -%>
+    <div>
+        
+        <p><strong>User Name</strong>: <%= user.userName %></p>
+        <p><strong>Email</strong>: <%= user.email %></p>
+        <p><strong>Account Type</strong>: <%= user.accountType %></p>
+        <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+    </div>
+    <div class="col-6">
+      <h3>Available Jobs</h3>
+      <ul class="row list-unstyled">
+    <% for(var i=0; i<appts.length; i++){ %>
+        <% if(appts[i].practitionerName === "Unassigned"){ %>
+      <li class="col-6 justify-content-between mt-5 apptList">
+        <p><%= appts[i].apptType%></p>
+        <p><%= appts[i].apptDate%></p>
+        <p><%= appts[i].customerDescription%></p>
+        <p><%= appts[i].address%></p>
+        <p><%= appts[i].phoneNumber%></p>
+        
+        <form action="/appointment/assignPractitioner/<%= appts[i]._id %>?_method=PUT" method="POST">
+            <button class="apptButton" type="submit">Accept Job</button>
+        </form>
+        
+      </li>
+      <% } %>
+    <% } %>
+      </ul>
+    </div>
+    <div class="col-6">
+        <h3>Your Jobs</h3>
+        <ul class="row list-unstyled">
+        <% for(var i=0; i<appts.length; i++){ %>
+            <% if(appts[i].practitionerName === user.userName && appts[i].apptStatus != "Completed"){ %>
+                <li class="col-6 justify-content-between mt-5 apptList">
+                    <p><%= appts[i].apptType%></p>
+                    <p><%= appts[i].apptDate%></p>
+                    <p><%= appts[i].customerDescription%></p>
+                    <p><%= appts[i].address%></p>
+                    <p><%= appts[i].phoneNumber%></p>
+                    <p>Status: <%= appts[i].apptStatus%></p>
+                    <p>Paid: <%= appts[i].paid%></p>
+                    <form action="/appointment/inProgress/<%= appts[i]._id %>?_method=PUT" method="POST">
+                        <button class="apptButton" type="submit">In Progress</button>
+                    </form>
+                    <form action="/appointment/completed/<%= appts[i]._id %>?_method=PUT" method="POST">
+                        <button class="apptButton" type="submit">Completed</button>
+                    </form>
+                </li>
+            <% } %>    
+        <% } %>    
+        </ul>
+    </div>
+    <div class="col-6">
+        <h3>Your Past Jobs</h3>
+        <ul class="row list-unstyled">
+        <% for(var i=0; i<appts.length; i++){ %>
+            <% if(appts[i].apptStatus == "Completed"){ %>
+                <li class="col-6 justify-content-between mt-5 apptList">
+                    <p><%= appts[i].apptType%></p>
+                    <p><%= appts[i].apptDate%></p>
+                    <p><%= appts[i].customerDescription%></p>
+                    <p><%= appts[i].address%></p>
+                    <p><%= appts[i].phoneNumber%></p>
+                    <p>Status: <%= appts[i].apptStatus%></p>
+                    <p>Paid: <%= appts[i].paid%></p>
+                    
+                </li>
+            <% } %>    
+        <% } %>    
+        </ul>
+    </div>
+    
+<%- include('partials/footer') -%>
