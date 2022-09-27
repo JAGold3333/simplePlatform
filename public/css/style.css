@@ -4,9 +4,10 @@ ul {
 .apptList{
     border: solid 1px black;
     margin: 1px;
-    width: 275px;
+    margin-top: 10px !important;
+    width: 230px;
     border-radius: 5px;
-    padding-bottom: 5px;
+    padding: 0 5px 5px 5px;
 }
 
 .apptButton{
@@ -17,8 +18,42 @@ ul {
     padding: 5px 10px;
     margin-top: 4px;
 
+
+}
+
+.paid{
+    border: solid 1px green;
+}
+
+.unpaid{
+    border: solid 1px red;
 }
 
 #payment{
     background-color: green;
+}
+
+.overflowX{
+    width: 1000px;
+    
+    overflow-x: auto;
+    
+}
+
+.overflowY{
+    width: 480px;
+    height: 730px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.rowX{
+    width: 1000px;
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    /* margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x)/ -2);
+    margin-left: calc(var(--bs-gutter-x)/ -2); */
 }

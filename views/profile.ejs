@@ -48,9 +48,9 @@
               
             
         </div>
-        <div class="col-6">
+        <div class="col-6 ">
           <h3>Upcoming Appointments</h3>
-          <ul class="row list-unstyled">
+          <ul class="row list-unstyled overflowY">
           <% for(var i=0; i<appts.length; i++) {%>
             <% if(appts[i].apptStatus != "Completed"){ %>
             <li class="col-6 justify-content-between mt-5 apptList">
@@ -82,7 +82,11 @@
           <ul class="row list-unstyled">
           <% for(var i=0; i<appts.length; i++) {%>
             <% if(appts[i].apptStatus == "Completed"){ %>
-            <li class="col-6 justify-content-between mt-5 apptList">
+              <% if(appts[i].paid === "true"){ %>
+            <li class="col-6 justify-content-between mt-5 apptList paid">
+              <% }else if(appts[i].paid === "false"){ %>
+            <li class="col-6 justify-content-between mt-5 apptList unpaid">
+              <% } %>
               
               <p><%= appts[i].apptType%></p>
               <p><%= appts[i].apptDate%></p>
@@ -96,9 +100,10 @@
                 <button class="apptButton" id="payment" type="submit">Pay Now</button>
               </form>
               <% } %>
-                    
+              
               
             </li>
+            
             <% } %>
           <% } %>
           </ul>

@@ -6,9 +6,10 @@
         <p><strong>Account Type</strong>: <%= user.accountType %></p>
         <a href="/logout" class="col-3 btn btn-primary">Logout</a>
     </div>
-    <div class="col-6">
-      <h3>Available Jobs</h3>
-      <ul class="row list-unstyled">
+    <h3>Available Jobs</h3>
+    <div class=" overflowX">
+      
+      <ul class="rowX list-unstyled">
     <% for(var i=0; i<appts.length; i++){ %>
         <% if(appts[i].practitionerName === "Unassigned"){ %>
       <li class="col-6 justify-content-between mt-5 apptList">
@@ -27,9 +28,10 @@
     <% } %>
       </ul>
     </div>
-    <div class="col-6">
-        <h3>Your Jobs</h3>
-        <ul class="row list-unstyled">
+    <h3>Your Jobs</h3>
+    <div class="col-6 overflowX">
+        
+        <ul class="rowX list-unstyled">
         <% for(var i=0; i<appts.length; i++){ %>
             <% if(appts[i].practitionerName === user.userName && appts[i].apptStatus != "Completed"){ %>
                 <li class="col-6 justify-content-between mt-5 apptList">
@@ -51,12 +53,18 @@
         <% } %>    
         </ul>
     </div>
-    <div class="col-6">
-        <h3>Your Past Jobs</h3>
-        <ul class="row list-unstyled">
+    <h3>Your Past Jobs</h3>
+    <div class="col-6 overflowX">
+        
+        <ul class="rowX list-unstyled">
         <% for(var i=0; i<appts.length; i++){ %>
             <% if(appts[i].apptStatus == "Completed"){ %>
-                <li class="col-6 justify-content-between mt-5 apptList">
+                <% if(appts[i].paid === "true"){ %>
+                <li class="col-6 justify-content-between mt-5 apptList paid">
+                    <% }else if(appts[i].paid === "false"){ %>
+                <li class="col-6 justify-content-between mt-5 apptList unpaid">
+                    <% } %>
+                
                     <p><%= appts[i].apptType%></p>
                     <p><%= appts[i].apptDate%></p>
                     <p><%= appts[i].customerDescription%></p>
