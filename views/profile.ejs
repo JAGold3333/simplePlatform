@@ -49,8 +49,10 @@
             
         </div>
         <div class="col-6">
+          <h3>Upcoming Appointments</h3>
           <ul class="row list-unstyled">
           <% for(var i=0; i<appts.length; i++) {%>
+            <% if(appts[i].apptStatus != "Completed"){ %>
             <li class="col-6 justify-content-between mt-5 apptList">
               
               <p><%= appts[i].apptType%></p>
@@ -70,10 +72,38 @@
               </form>        
               
             </li>
+            <% } %>
           <% } %>
           </ul>
           
-        </div>  
+        </div>
+        <div class="col-6">
+          <h3>Past Appointments</h3>
+          <ul class="row list-unstyled">
+          <% for(var i=0; i<appts.length; i++) {%>
+            <% if(appts[i].apptStatus == "Completed"){ %>
+            <li class="col-6 justify-content-between mt-5 apptList">
+              
+              <p><%= appts[i].apptType%></p>
+              <p><%= appts[i].apptDate%></p>
+              <p><%= appts[i].customerDescription%></p>
+              <p>Status: <%= appts[i].apptStatus%></p>
+              <p>Practitioner: <%= appts[i].practitionerName%></p>
+              <p>Paid: <%= appts[i].paid%></p>
+              
+              <% if(appts[i].paid == "false") {%>
+              <form action="/appointment/paid/<%= appts[i].id %>?_method=PUT" method="POST">
+                <button class="apptButton" id="payment" type="submit">Pay Now</button>
+              </form>
+              <% } %>
+                    
+              
+            </li>
+            <% } %>
+          <% } %>
+          </ul>
+          
+        </div>    
       
     </div>
 </div>
